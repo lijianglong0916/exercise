@@ -1,10 +1,10 @@
 spring:
   application:
-      name: hscs-accounts-engine
+      name: excrise.com
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://106.54.82.18:3306/hscs_hsae?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true}
-    username: ${SPRING_DATASOURCE_USERNAME:dev_test}
-    password: ${SPRING_DATASOURCE_PASSWORD:abc!*123ABC}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://excrise.com:3306/hscs_hsae?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     hikari:
       # 连接池最小空闲连接数
       minimum-idle: ${SPRING_DATASOURCE_MINIMUM_IDLE:20}
@@ -13,10 +13,10 @@ spring:
       # 等待连接池分配连接的最大时长（毫秒）
       connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
   redis:
-    host: ${SPRING_REDIS_HOST:106.54.82.18}
+    host: ${SPRING_REDIS_HOST:excrise.com}
     port: ${SPRING_REDIS_PORT:6379}
     database: ${SPRING_REDIS_DATABASE:1}
-    password: ${SPRING_REDIS_PASSWORD:abc123}
+    password: ${SPRING_REDIS_PASSWORD}
     jedis:
       pool:
         # 资源池中最大连接数

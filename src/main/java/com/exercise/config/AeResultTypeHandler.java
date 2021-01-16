@@ -3,8 +3,10 @@ package com.exercise.config;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 
+import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,9 +21,17 @@ public class AeResultTypeHandler implements ResultSetHandler {
         PreparedStatement ps=null;
         ResultSetMetaData metaData = ps.getMetaData();
         int columnCount = metaData.getColumnCount();
+
         for (int i=0;i<columnCount;i++){
-            String columnName = metaData.getColumnName(i);
-//            metaData
+            try {
+                Field columnName = metaData.getClass().getDeclaredField("columnName");
+                columnName.setAccessible(true);
+                Collection o = (Collection)columnName.get(metaData);
+                continue;
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            //metaData
         }
         return resultSets;
     }
