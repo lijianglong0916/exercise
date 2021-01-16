@@ -19,7 +19,12 @@ import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.hzero.core.util.FieldNameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -30,6 +35,8 @@ import java.util.Properties;
 @Intercepts(@Signature(type = Executor.class, method = "query",
         args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}))
 public class AeMybatisSqlInterceptor implements Interceptor {
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -48,6 +55,13 @@ public class AeMybatisSqlInterceptor implements Interceptor {
         Statement stmt = CCJSqlParserUtil.parse(boundSql.getSql());
         Select select=(Select)stmt;
         PlainSelect plainSelect=(PlainSelect)select.getSelectBody();
+        //通过预编译获取所有的值
+        Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSetMetaData resultSetMetaData = preparedStatement.getMetaData();
+        //根据预编译的结果中的column字段修改sql中select*的字段，来做字段的转换
+
+
         for (SelectItem selectItem : plainSelect.getSelectItems()) {
             if (selectItem instanceof SelectExpressionItem){
                 ((SelectExpressionItem) selectItem).getExpression().accept(new ExpressionVisitorAdapter(){

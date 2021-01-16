@@ -94,9 +94,3 @@ mybatis:
   mapperLocations: classpath*:/mapper/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
-
-
-logging:
-  level:
-    com.exercise: ${LOG_LEVEL:debug}
-    org.apache.ibatis: ${LOG_LEVEL:debug}
