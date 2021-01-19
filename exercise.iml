@@ -30,6 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.16" level="project" />
     <orderEntry type="library" name="Maven: com.hscs.starter:starter-core:1.0.3-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.hzero.boot:hzero-boot-platform:1.4.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.hzero.starter:hzero-starter-core:1.4.0.RELEASE" level="project" />
