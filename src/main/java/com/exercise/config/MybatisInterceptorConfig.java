@@ -12,8 +12,8 @@ import java.util.Properties;
 @Configuration
 public class MybatisInterceptorConfig{
     @Bean
-    public AeMybatisSqlInterceptor mybatisInterceptor() {
-        AeMybatisSqlInterceptor interceptor = new AeMybatisSqlInterceptor();
+    public MybatisSqlInterceptor mybatisInterceptor() {
+        MybatisSqlInterceptor interceptor = new MybatisSqlInterceptor();
         Properties properties = new Properties();
         // 可以调用properties.setProperty方法来给拦截器设置一些自定义参数
         interceptor.setProperties(properties);

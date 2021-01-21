@@ -1,6 +1,5 @@
 package com.hscs.hsae.infra.constants;
 
-import org.omg.stub.java.rmi._Remote_Stub;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -14,9 +13,9 @@ import java.util.Properties;
  * @author 张志岑 ZHICEN.ZHANG@HAND-CHINA.COM
  * @date 2020/7/13 11:25
  */
-public class AeConstants {
+public class Constants {
 
-    private static Logger logger = LoggerFactory.getLogger(AeConstants.class);
+    private static Logger logger = LoggerFactory.getLogger(com.hscs.hsae.infra.constants.Constants.class);
 
     /**
      * 数据库类型

@@ -14,7 +14,7 @@ import java.util.List;
  * @author jianglong.li@hand-china.com
  * @date 2021-01-11 15:59
  **/
-public class AeResultTypeHandler implements ResultSetHandler {
+public class ResultTypeHandler implements ResultSetHandler {
     @Override
     public <E> List<E> handleResultSets(Statement statement) throws SQLException {
         List<E> resultSets = new ArrayList<>();

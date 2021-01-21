@@ -1,10 +1,12 @@
 package com.exercise;
 
-import com.exercise.infra.util.Adapter.TenantSelectVisitorAdapter;
+import com.exercise.domain.entity.Person;
 import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.Select;
+import org.joda.time.DateTime;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * @author jianglong.li@hand-china.com
@@ -60,11 +62,13 @@ public class ExerciseTest {
             "FROM hsar_receipt_headers H";
 
     public static void main(String[] args) throws JSQLParserException {
-        Statement statement = CCJSqlParserUtil.parse(sql2);
-        Select select=(Select)statement;
-        TenantSelectVisitorAdapter adapter=new TenantSelectVisitorAdapter();
-        TenantSelectVisitorAdapter.tenantId.set(21L);
-        select.getSelectBody().accept(adapter);
-        System.out.println(select.getSelectBody());
+        Class<Person> clazz = Person.class;
+        Field[] fields = clazz.getDeclaredFields();
+        Arrays.asList(fields).stream().forEach(e->{
+            if (e.getType().isAssignableFrom(Date.class)||e.getType().isAssignableFrom(DateTime.class)){
+                System.out.println(e.getType().getTypeName());
+            }
+        });
+
     }
 }
